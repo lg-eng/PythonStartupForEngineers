@@ -1,0 +1,124 @@
+---
+title: "Signale"
+author: "Leopold Götsch"
+date: "2024-03-01"
+categories: [news, interaktiv]
+---
+
+Klassische Signalverarbeitung
+
+## Pakate laden
+
+```{python}
+
+import pandas as pd
+```
+
+## Messdaten laden
+
+```{python}
+df = pd.read_excel('data.xlsx')
+display(df)
+df = pd.read_csv('data.csv',delimiter=';', decimal=',')
+display(df)
+```
+
+## Messdaten überprüfen
+### Zeitstempel
+wird auf die konstante Abtastrate überprüft.
+
+```{python}
+all(df['Time (s)'].diff().diff()==0)
+```
+
+Die maximale Abweichung der Abtastrate wird angegeben
+
+```{python}
+
+maximal_sampling_rate_deviation = df['Time (s)'].diff().diff().abs().max()
+display(maximal_sampling_rate_deviation)
+```
+
+Relativer Fehler der Abtastrate
+
+```{python}
+
+sampling_rate_mean = df['Time (s)'].diff().mean()
+sampling_rate_relative_deviation = maximal_sampling_rate_deviation/sampling_rate_mean
+display(sampling_rate_relative_deviation)
+```
+
+Abweichung kleiner 0.02 %. Das ist ausreichend für unsere Zwecke und die Annahme einer konstanten Abtastrate darf als erfüllt angenommen werden.
+
+## Was sollen wir von den Messdaten wissen?
+
+Ist Herr Haberl "Volle gsprintet?!"  
+Lösungsideen:
+1. Aus der Beschleunigung die Geschwindigkeit bestimmen.
+2. Schrittfrequenz bestimmen
+
+### Darstellung der Messdaten
+
+```{python}
+df.plot(x='Time (s)')
+```
+
+```{python}
+from numpy.fft import fft, ifft
+import matplotlib.pyplot as plt
+import numpy as np
+
+#Für welche messdaten soll die FFT gemacht werden?
+values = df['Absolute acceleration (m/s^2)'].values
+
+X = fft(values) #FFT der Werte
+N = len(X) #Anzahl der Messpunkte
+n = np.arange(N) #Array mit der Länge gleich der Anzahl der Messpunkte
+
+az = df['Time (s)'].diff().mean() # Abtastzeit
+display('Abtastzeit = ' + str(az) + ' s')
+sr = 1/(az) #Samplingrate = Abtastfrequenz
+display('Sampling Rate = ' + str(sr) + ' Hz')
+
+T = N/sr # Absolute Zeit
+freq = n/T # Frequenzachse
+
+#Plot 
+plt.figure(figsize = (6, 3))
+plt.subplot(121)
+
+plt.stem(freq, np.abs(X), 'b', \
+         markerfmt=" ", basefmt="-b")
+plt.xlabel('Freq  in Hz')
+plt.ylabel('FFT Amplitude |X(freq)|')
+#plt.xlim(0, sr/2) 
+plt.xlim(0,10)
+plt.ylim(0,1000)
+plt.grid()
+
+plt.subplot(122)
+plt.plot(df['Time (s)'].values, ifft(X), 'r')
+plt.xlabel('Time in s')
+plt.ylabel('Amplitude')
+plt.tight_layout()
+plt.show()
+```
+
+```{python}
+import plotly.express as px
+fig = px.line(df, x="Time (s)", y='Absolute acceleration (m/s^2)', title='commute')
+fig.show()
+```
+
+```{python}
+# x and y given as array_like objects
+import plotly.express as px
+fig = px.line(x=freq, y=np.abs(X))
+fig.update_yaxes(range=[0, max(np.abs(X)[1:])], row=1, col=1)
+fig.update_xaxes(range=[0, 50], row=1, col=1)
+fig.update_xaxes(title_text="Frequency (Hz)", row=1, col=1)
+fig.update_yaxes(title_text="FFT Amplitude |X(freq)|", row=1, col=1)
+
+fig.show()
+```
+

@@ -1,0 +1,13 @@
+---
+title: "About"
+about:
+  template: jolla
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/lg-eng/PythonStartupForEngineers
+
+---
+
+This blog was started as a way to document the transition from proprietorial engineering software to python. I hope to share my experiences and help others who are in the same position. 
+

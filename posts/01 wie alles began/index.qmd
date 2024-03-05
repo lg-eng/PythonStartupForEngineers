@@ -1,0 +1,48 @@
+---
+title: "Wie alles gegann"
+author: "Leopold Götsch"
+date: "2024-03-01"
+categories: [news]
+---
+
+5 Jahre Matlab  
+2 Jahre Octave  
+1 Jahr Scilab / Scicos  
+9 Jahre Python  
+  
+
+Die einzige Motivation Matlab zu verlassen war das fehlen von Lizenzen.  
+
+Aus Zwang kann ein Glücksfall entstehen!  
+
+Der Umstieg von Matlab auf Python dauert 30 Minuten. Die Möglichkeiten die sich mit Python eröffnen werden in diesem Blog vorgestellt.  
+
+Es wird gezeigt welche Aufgaben mit Python 1:1 übernommen werden können und welche Aufgaben mit Python anders gelöst werden. Es soll natürlich auch gezeigt werden was mit Python schwer möglich ist.
+
+Der Antrieb dieses Blogs ist es zu zeigen welche Möglichkeiten sich mit Python ergeben. Der Blog entstand im Zuge einer Matlab Schulung und wurde mit Python / Quarto erstellt.
+
+## Warum Python im Unterricht
+[Verbreitung der Programmiersprachen](https://www.tiobe.com/tiobe-index/)  
+[Github Programming Metrics](https://innovationgraph.github.com/global-metrics/programming-languages)  
+  
+Dass Python unterrichtet wird ist aufgrund seiner Verbreitung und der vielfältigen Anwendungsmöglichkeiten sinnvoll. Die einfache Syntax macht den Einstieg einfach.  
+Aufgrund der vielfältigen Anwendungsmöglichkeiten ist Python für viele Anwendungen einsetzbar und könnte als Schweizer Taschenmesser der Programmiersprachen bezeichnet werden.
+
+Jede weitere Programmiersprache im Unterricht muss wohl überlegt sein, da nicht nur das erlernen, sondern auch die installation der Entwicklungsumgebung Zeit in Anspruch nimmt.  
+
+## Hilfe
+[Python](https://www.python.org/about/gettingstarted/)
+[Bodenseo](https://www.bodenseo.com/)
+[ChatGPT](https://chat.openai.com/)
+[w3school](https://www.w3schools.com/python/)
+
+The internet ist full of it!
+
+
+
+
+
+
+
+
+

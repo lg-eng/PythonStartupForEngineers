@@ -1,0 +1,26 @@
+---
+title: "Der Wechsel auf Python"
+author: "Leopold Götsch"
+date: "2024-03-01"
+categories: [news]
+---
+
+In kleinen Schritten von Matlab zu Python.
+
+## Installation von Anaconda
+
+Die einfachste Möglichkeit um Python zu installieren ist die Verwendung von [Anaconda](https://www.anaconda.org). [Anaconda](https://www.anaconda.org) ist eine Open-Source-Distribution von Python und R, die sich auf Data Science und Machine Learning spezialisiert hat. Sie enthält viele nützliche Bibliotheken und Tools, die für die Datenanalyse benötigt werden.  
+   
+Kosten: 0 
+
+## Spyder
+[Spyder](https://docs.spyder-ide.org/current/installation.html) ist die Python IDE (Integrated Development Environment)  von Anaconda. Sie ist eine leistungsstarke Entwicklungsumgebung, die speziell für die Datenanalyse entwickelt wurde. Sie enthält viele nützliche Funktionen, die das Programmieren erleichtern. Die Oberfläche kann für den in das bekannte Layout von Matlab umgestellt werden.  
+Dies ist besonders für Personen, die von Matlab auf Python umsteigen, sehr hilfreich. Auch eine [online Umgebung](https://mybinder.org/v2/gh/spyder-ide/binder-environments/spyder-stable?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fspyder-ide%252FSpyder-Workshop%26urlpath%3Ddesktop%252F%26branch%3Dmaster) ist verfügbar.
+
+## Jupyter Notebook
+Jupyter Notebook ist eine Webanwendung, die es ermöglicht, Dokumente zu erstellen und auszuführen, die Live-Code, Gleichungen, Visualisierungen und erklärten Text enthalten, siehe [Demo](https://jupyter.org/try-jupyter/notebooks/?path=notebooks/Intro.ipynb). Jupyter Notebook ist besonders für die Datenanalyse und das maschinelle Lernen geeignet. Es ist auch möglich, Jupyter Notebooks in PDFs, HTML-Dateien und anderen Formaten zu exportieren.  
+Es wird bereits mit Anaconda mit geliefert.
+Jupyter Notebooks können auch Live und ohne lokale Installation auf [Jupyter.org](https://jupyter.org/try-jupyter/lab/) erstellt und ausgeführt werden.
+
+## Next Level - Dokumentation mit Quarto
+[Quarto.org](https://quarto.org) ist ein neues Open-Source-Tool, das speziell für die Erstellung von Büchern, Berichten und anderen Dokumenten entwickelt wurde. Es ist besonders für die Erstellung von wissenschaftlichen Dokumenten geeignet, da es die Integration von Code, Gleichungen und Visualisierungen ermöglicht. Quarto ist auch in der Lage, Dokumente in verschiedene Formate zu exportieren, darunter PDF, HTML und EPUB.

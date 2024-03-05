@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Leopold Götsch">
 
-<title>Python Startup For Engineers</title>
+<title>Python Startup For Engineers - Weitere Anwendungen von Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +24,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,77 +67,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Suchen"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Python Startup For Engineers</span>
     </a>
   </div>
@@ -149,7 +90,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -167,267 +108,75 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Python Startup For Engineers</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Weitere Anwendungen von Python</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">news</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Autor:in</div>
+      <div class="quarto-title-meta-contents">
+               <p>Leopold Götsch </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">4. März 2024</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Kategorien</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">alle <span class="quarto-category-count">(6)</span></div><div class="category" data-category="PT2">PT2 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="control">control <span class="quarto-category-count">(1)</span></div><div class="category" data-category="interaktiv">interaktiv <span class="quarto-category-count">(3)</span></div><div class="category" data-category="news">news <span class="quarto-category-count">(4)</span></div><div class="category" data-category="simulation">simulation <span class="quarto-category-count">(2)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="news" data-listing-date-sort="1709247600000" data-listing-file-modified-sort="1709629958233" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="200">
-<div class="thumbnail">
-<p><a href="./posts/01 wie alles began/index.html" class="no-external"></a></p><a href="./posts/01 wie alles began/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/01 wie alles began/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/01 wie alles began/index.html" class="no-external">Wie alles gegann</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/01 wie alles began/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('news'); return false;">
-news
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/01 wie alles began/index.html" class="no-external">5 Jahre Matlab<br>
-2 Jahre Octave<br>
-1 Jahr Scilab / Scicos<br>
-9 Jahre Python</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/01 wie alles began/index.html" class="no-external">
-<div class="listing-date">
-01.03.2024
-</div>
-<div class="listing-author">
-Leopold Götsch
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="news" data-listing-date-sort="1709247600000" data-listing-file-modified-sort="1709628115796" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="253">
-<div class="thumbnail">
-<p><a href="./posts/02_Der Wechsel/index.html" class="no-external"></a></p><a href="./posts/02_Der Wechsel/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/02_Der Wechsel/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/02_Der Wechsel/index.html" class="no-external">Der Wechsel auf Python</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/02_Der Wechsel/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('news'); return false;">
-news
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/02_Der Wechsel/index.html" class="no-external">In kleinen Schritten von Matlab zu Python.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/02_Der Wechsel/index.html" class="no-external">
-<div class="listing-date">
-01.03.2024
-</div>
-<div class="listing-author">
-Leopold Götsch
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="news,interaktiv" data-listing-date-sort="1709247600000" data-listing-file-modified-sort="1709627518848" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="226">
-<div class="thumbnail">
-<p><a href="./posts/03_Signals/index.html" class="no-external"></a></p><a href="./posts/03_Signals/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\03_Signals\index_files\figure-html\cell-7-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/03_Signals/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/03_Signals/index.html" class="no-external">Signale</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/03_Signals/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('news'); return false;">
-news
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('interaktiv'); return false;">
-interaktiv
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/03_Signals/index.html" class="no-external">Klassische Signalverarbeitung</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/03_Signals/index.html" class="no-external">
-<div class="listing-date">
-01.03.2024
-</div>
-<div class="listing-author">
-Leopold Götsch
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="interaktiv,simulation,control" data-listing-date-sort="1709334000000" data-listing-file-modified-sort="1709630315406" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="38">
-<div class="thumbnail">
-<p><a href="./posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html" class="no-external"></a></p><a href="./posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html" class="no-external">
-<p class="card-img-top"><img src="posts\05_Streckenidentifikation\MessdatenVergleichStrecke_files\figure-html\cell-4-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html" class="no-external">Streckenidentifikation</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('interaktiv'); return false;">
-interaktiv
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('simulation'); return false;">
-simulation
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('control'); return false;">
-control
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html" class="no-external">Regelungstechnik mit Python</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html" class="no-external">
-<div class="listing-date">
-02.03.2024
-</div>
-<div class="listing-author">
-Leopold Götsch
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="interaktiv,simulation,PT2" data-listing-date-sort="1709506800000" data-listing-file-modified-sort="1709629840798" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="169">
-<div class="thumbnail">
-<p><a href="./posts/04_PT2Glied/index.html" class="no-external"></a></p><a href="./posts/04_PT2Glied/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\04_PT2Glied\index_files\figure-html\cell-3-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/04_PT2Glied/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/04_PT2Glied/index.html" class="no-external">PT2 Simulation</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/04_PT2Glied/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('interaktiv'); return false;">
-interaktiv
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('simulation'); return false;">
-simulation
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('PT2'); return false;">
-PT2
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/04_PT2Glied/index.html" class="no-external">Streckensimulation mit Demonstration der Interaktiven Möglichkeiten von Jupyter Notebooks.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/04_PT2Glied/index.html" class="no-external">
-<div class="listing-date">
-04.03.2024
-</div>
-<div class="listing-author">
-Leopold Götsch
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="news" data-listing-date-sort="1709506800000" data-listing-file-modified-sort="1709630514666" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="34">
-<div class="thumbnail">
-<p><a href="./posts/06_Weitere Anwendungen/index.html" class="no-external"></a></p><a href="./posts/06_Weitere Anwendungen/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/06_Weitere Anwendungen/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/06_Weitere Anwendungen/index.html" class="no-external">Weitere Anwendungen von Python</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/06_Weitere Anwendungen/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('news'); return false;">
-news
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/06_Weitere Anwendungen/index.html" class="no-external">
-
+<section id="beispiele" class="level2">
+<h2 class="anchored" data-anchor-id="beispiele">Beispiele</h2>
 <ul>
-<li>Einheiten und symbolisches Rechnen</li>
-<li>Animationen</li>
-<li>Noten ins Soktrates eintragen mit GUI</li>
+<li><a href="https://lg-eng.github.io/HWE-Skript/GET/KnotenSpannungsAnalyse.html">Einheiten und symbolisches Rechnen</a></li>
+<li><a href="https://lg-eng.github.io/KSN-Skript/Leitungstheorie.html#grafische-darstellung">Animationen</a></li>
+<li><a href="https://github.com/akaiserhtl/sokrates-helper">Noten ins Soktrates eintragen mit GUI</a></li>
 </ul>
-</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/06_Weitere Anwendungen/index.html" class="no-external">
-<div class="listing-date">
-04.03.2024
-</div>
-<div class="listing-author">
-Leopold Götsch
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-Keine Treffer
-</div>
-</div></main> <!-- /main -->
+</section>
+<section id="toolboxen-und-anwendungen" class="level2">
+<h2 class="anchored" data-anchor-id="toolboxen-und-anwendungen">Toolboxen und Anwendungen</h2>
+<ul>
+<li><a href="https://micropython.org/">Mikrocontroller programmierung</a></li>
+<li><a href="https://www.sympy.org/en/index.html">Symbolisches Rechnen</a></li>
+<li><a href="https://numpy.org/">Numerische Toolbox</a></li>
+<li><a href="https://www.scipy.org/">SciPy</a></li>
+<li><a href="https://matplotlib.org/">Matplotlib</a></li>
+<li><a href="https://pandas.pydata.org/">Pandas</a></li>
+<li><a href="https://seaborn.pydata.org/">Seaborn</a></li>
+<li><a href="https://selenium-python.readthedocs.io/">Selenium</a></li>
+<li><a href="https://opencv.org/">Bilderkennung</a></li>
+<li><a href="https://python-control.readthedocs.io">Control Systems Library</a></li>
+<li><a href="https://www.tensorflow.org">Machine Learning</a></li>
+<li><a href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment">Conda Environment</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

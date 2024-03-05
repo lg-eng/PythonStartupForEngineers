@@ -3,7 +3,11 @@
     "listing": "/index.html",
     "items": [
       "/posts/01 wie alles began/index.html",
-      "/posts/Der Wechsel/index.html"
+      "/posts/02_Der Wechsel/index.html",
+      "/posts/03_Signals/index.html",
+      "/posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html",
+      "/posts/04_PT2Glied/index.html",
+      "/posts/06_Weitere Anwendungen/index.html"
     ]
   }
 ]

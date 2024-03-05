@@ -1,1 +1,1 @@
-Sitemap: https://github.com/lg-eng/PythonStartupForEngineers/sitemap.xml
+Sitemap: https://lg-eng.github.io/PythonStartupForEngineers/sitemap.xml

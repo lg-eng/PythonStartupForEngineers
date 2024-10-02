@@ -4,7 +4,7 @@
     "href": "posts/07_QuartoLive/index.html",
     "title": "Dynamically execute code in the user’s web browser",
     "section": "",
-    "text": "Quarto Live\nDynamically execute code in the user’s web browser\n\n\nPython\nHere is some code to demonstrate the use of Python in Quarto Live. in addition this code can be used to create nice plots with matplotlib. Feel free to change the code and see the results."
+    "text": "Quarto Live\nDynamically execute code in the user’s web browser by comining Quarto and Quarto Live.\n\n\nPython\nHere is some code to demonstrate the use of Python using Quarto Live. in addition the demonstration code can be used to create nice plots with matplotlib. Feel free to change the code and see the results.\nthe code bellow is specific to the data exportet froman Altium transient simulation. The code reads the data from a csv file and plots the current and voltage over time.\nThis method could be a good way to create consistent plots for reports or presentations. As of now it is unclear how data could be uploaded, see Quarto Live - Loading Resources."
   },
   {
     "objectID": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html",
@@ -102,7 +102,7 @@
     "href": "index.html",
     "title": "Python Startup For Engineers",
     "section": "",
-    "text": "Wie alles begann\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n01.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nDer Wechsel auf Python\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n01.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nSignale\n\n\n\n\n\n\nnews\n\n\ninteraktiv\n\n\n\n\n\n\n\n\n\n01.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nStreckenidentifikation\n\n\n\n\n\n\ninteraktiv\n\n\nsimulation\n\n\ncontrol\n\n\n\n\n\n\n\n\n\n02.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nPT2 Simulation\n\n\n\n\n\n\ninteraktiv\n\n\nsimulation\n\n\nPT2\n\n\n\n\n\n\n\n\n\n04.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nWeitere Anwendungen von Python\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n04.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nDynamically execute code in the user’s web browser\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n01.10.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\nKeine Treffer"
+    "text": "Wie alles begann\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n01.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nDer Wechsel auf Python\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n01.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nSignale\n\n\n\n\n\n\nnews\n\n\ninteraktiv\n\n\n\n\n\n\n\n\n\n01.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nStreckenidentifikation\n\n\n\n\n\n\ninteraktiv\n\n\nsimulation\n\n\ncontrol\n\n\n\n\n\n\n\n\n\n02.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nPT2 Simulation\n\n\n\n\n\n\ninteraktiv\n\n\nsimulation\n\n\nPT2\n\n\n\n\n\n\n\n\n\n04.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nWeitere Anwendungen von Python\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n04.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nDynamically execute code in the user’s web browser\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n02.10.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\nKeine Treffer"
   },
   {
     "objectID": "posts/02_Der Wechsel/index.html",

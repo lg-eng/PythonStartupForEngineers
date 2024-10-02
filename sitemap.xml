@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://lg-eng.github.io/PythonStartupForEngineers/posts/06_Weitere Anwendungen/index.html</loc>
-    <lastmod>2024-03-08T09:28:24.810Z</lastmod>
+    <loc>https://lg-eng.github.io/PythonStartupForEngineers/posts/07_QuartoLive/index.html</loc>
+    <lastmod>2024-10-02T14:59:15.443Z</lastmod>
   </url>
   <url>
-    <loc>https://lg-eng.github.io/PythonStartupForEngineers/posts/04_PT2Glied/index.html</loc>
-    <lastmod>2024-03-09T16:36:57.922Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lg-eng.github.io/PythonStartupForEngineers/posts/02_Der Wechsel/index.html</loc>
-    <lastmod>2024-03-05T08:41:55.796Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lg-eng.github.io/PythonStartupForEngineers/index.html</loc>
-    <lastmod>2024-03-05T08:28:50.483Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lg-eng.github.io/PythonStartupForEngineers/about.html</loc>
-    <lastmod>2024-03-04T14:37:24.226Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lg-eng.github.io/PythonStartupForEngineers/posts/01 wie alles began/index.html</loc>
-    <lastmod>2024-03-05T09:12:38.233Z</lastmod>
+    <loc>https://lg-eng.github.io/PythonStartupForEngineers/posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html</loc>
+    <lastmod>2024-03-05T09:18:35.406Z</lastmod>
   </url>
   <url>
     <loc>https://lg-eng.github.io/PythonStartupForEngineers/posts/03_Signals/index.html</loc>
     <lastmod>2024-03-05T08:31:58.848Z</lastmod>
   </url>
   <url>
-    <loc>https://lg-eng.github.io/PythonStartupForEngineers/posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html</loc>
-    <lastmod>2024-03-05T09:18:35.406Z</lastmod>
+    <loc>https://lg-eng.github.io/PythonStartupForEngineers/posts/01 wie alles began/index.html</loc>
+    <lastmod>2024-09-27T12:29:33.407Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lg-eng.github.io/PythonStartupForEngineers/about.html</loc>
+    <lastmod>2024-03-04T14:37:24.226Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lg-eng.github.io/PythonStartupForEngineers/index.html</loc>
+    <lastmod>2024-03-05T08:28:50.483Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lg-eng.github.io/PythonStartupForEngineers/posts/02_Der Wechsel/index.html</loc>
+    <lastmod>2024-03-05T08:41:55.796Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lg-eng.github.io/PythonStartupForEngineers/posts/04_PT2Glied/index.html</loc>
+    <lastmod>2024-03-09T16:36:57.922Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lg-eng.github.io/PythonStartupForEngineers/posts/06_Weitere Anwendungen/index.html</loc>
+    <lastmod>2024-09-27T12:32:03.182Z</lastmod>
   </url>
 </urlset>

@@ -9,6 +9,7 @@ categories: [news]
 * [Einheiten und symbolisches Rechnen](https://lg-eng.github.io/HWE-Skript/GET/KnotenSpannungsAnalyse.html)
 * [Animationen](https://lg-eng.github.io/KSN-Skript/Leitungstheorie.html#grafische-darstellung)
 * [Noten ins Soktrates eintragen mit GUI](https://github.com/akaiserhtl/sokrates-helper)
+* [Interaktive Webseite für PID-Regler](https://lg-eng.github.io/MTRS-Skript/SteuerRegel/01.02_Regelungstechnik.html#interaktiver-pid-simulator)
 
 ## Toolboxen und Anwendungen
 * [Mikrocontroller programmierung](https://micropython.org/)
@@ -22,3 +23,6 @@ categories: [news]
 * [Bilderkennung](https://opencv.org/)
 * [Control Systems Library](https://python-control.readthedocs.io)
 * [Machine Learning](https://www.tensorflow.org)
+* [Conda Environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment)  
+* [Phyphox](https://phyphox.org/)
+* [Interactive Webseite für PID-Regler](https://lg-eng.github.io/MTRS-Skript/SteuerRegel/01.02_Regelungstechnik.html#interaktiver-pid-simulator)

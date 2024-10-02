@@ -1,0 +1,82 @@
+---
+title: "Dynamically execute code in the user's web browser"
+author: "Leopold Götsch"
+date: "2024-10-02"
+format: live-html
+pyodide:
+  packages:
+    - matplotlib
+    - numpy
+    - pandas
+    - sympy
+    - quantiphy
+#    - re
+    - scipy
+resources:
+  - data
+categories: [news]
+---
+
+# [Quarto Live](https://r-wasm.github.io/quarto-live/)
+Dynamically execute code in the user's web browser by comining [Quarto](www.quarto.org) and [Quarto Live](https://r-wasm.github.io/quarto-live/).  
+
+Here is some code to demonstrate the use of Python using Quarto Live. In addition the demonstration code can be used to create nice plots with matplotlib. Feel free to change the code and see the results.  
+The code bellow is specific to the data exportet from an Altium transient simulation. The code reads the data from a csv file and plots specified data over time.  
+This method could be a good way to create consistent plots for reports or presentations. As of now it is unclear how data could be uploaded, see [Quarto Live - Loading  Resources](https://r-wasm.github.io/quarto-live/other/resources.html ).
+
+
+
+```{pyodide}
+from sympy import * # import everything from sympy
+import sympy.physics.units as u # import the units module
+from matplotlib import pyplot as plt # import the pyplot module from matplotlib
+from quantiphy import Quantity # import the Quantity class from the quantiphy module
+import pandas as pd # import the pandas module
+from itertools import cycle
+
+
+def trans_plot_matplotlib(filepath, thing_to_plot): # define a function that takes a filepath and a dictionary of things to plot      
+  #https://matplotlib.org/stable/gallery/ticks/tick-formatters.html 
+  from matplotlib.ticker import FuncFormatter # import the FuncFormatter class from the matplotlib.ticker module
+  time_formatter = FuncFormatter(lambda v, p: str(Quantity(v, 's'))) # create a time formatter
+  volt_formatter = FuncFormatter(lambda v, p: str(Quantity(v, 'V'))) # create a voltage formatter
+  amp_formatter =  FuncFormatter(lambda v, p: str(Quantity(v, 'A'))) # create a current formatter
+
+  df = pd.read_csv(filepath,sep=';',decimal=',') # read the csv file at the filepath into a pandas dataframe
+
+  suplotnumber_max = 0 # initialize the maximum subplot number
+  for key in thing_to_plot: # iterate over the keys in the dictionary
+      if max(thing_to_plot[key]) > suplotnumber_max: # check if the maximum value in the list of values is greater than the maximum subplot number
+          suplotnumber_max = max(thing_to_plot[key]) # set the maximum subplot number to the maximum value in the list of values
+  
+  styles = cycle(['--', '-.', ':']) # create a cycle of line styles
+  fig, ax = plt.subplots(suplotnumber_max,1,figsize=(5, 3*suplotnumber_max)) # create a figure and an array of axes
+  plot_numbers = [] # initialize the list of old subplot numbers, required to add the grid and legend only once per subplot
+  for i, key in enumerate(thing_to_plot): # iterate over the keys in the dictionary
+      sub_plot_number = thing_to_plot[key][0]-1 # set the subplot number to the first value in the list of values
+      line, = ax[sub_plot_number].plot(df.time, df[key],label=key) # plot the key against the time
+      ax[sub_plot_number].set_xlabel('Time') # set the x-axis label
+      ax[sub_plot_number].set_ylabel(key) # set the y-axis label
+
+      if sub_plot_number not in plot_numbers: # check if the subplot number is different from the old subplot number
+        ax[sub_plot_number].grid() # add a grid to the subplot
+        ax[sub_plot_number].xaxis.set_major_formatter(time_formatter) # set the x-axis formatter to the time formatter
+        if key[0] == 'i': # check if the first character of the key is 'i'
+            ax[sub_plot_number].yaxis.set_major_formatter(amp_formatter) # set the y-axis formatter to the current formatter
+        elif key[0] == 'v': # check if the first character of the key is 'v'
+          ax[sub_plot_number].yaxis.set_major_formatter(volt_formatter) # set the y-axis formatter to the voltage formatter
+        ax[sub_plot_number].yaxis_tickformat = ".3s" # set the y-axis tick format
+        ax[sub_plot_number].xaxis_tickformat = ".3s" # set the x-axis tick format
+        plot_numbers.append(sub_plot_number) # append the subplot number to the list of old subplot numbers
+      else:
+        line.set_linestyle(next(styles))
+      ax[sub_plot_number].legend() # add a legend to the subplot
+
+  plt.tight_layout() # adjust the subplot layout
+  plt.savefig(filepath.replace('.csv','.svg'))  # save the figure as an svg file
+  plt.show() # show the figure
+
+thing_to_plot = {"i(rlast)":[1],"i(rshunt)":[2],"ic(t1)":[3],"ic(t2)":[3],"v(uin)":[4],"v(uout)":[4]} # define a dictionary of things to plot
+trans_plot_matplotlib("data/trans.csv", thing_to_plot ) # call the function
+```
+

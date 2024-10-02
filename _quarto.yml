@@ -8,12 +8,22 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/lg-eng/PythonStartupForEngineers
+  cookie-consent:
+    type: express
+    style: headline
+    palette: dark
+    tracking: true
+  google-analytics:
+    tracking-id: "G-4T0K9QTW06"
+    anonymize-ip: true
 
 format:
   html:
     theme: cosmo
     css: styles.css
+
+
 
 
 

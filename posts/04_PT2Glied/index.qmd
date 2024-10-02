@@ -20,64 +20,78 @@ from sympy import *
 from sympy.abc import s
 from sympy.physics.control.lti import TransferFunction
 from IPython.display import display, Markdown, Latex 
+from sympy.physics.control.control_plots import step_response_plot, step_response_numerical_data
+
 Kp,Ki,Kd,Kpt2,T,D,R,G,F = symbols('Kp,Ki,Kd,Kpt2,T,D,R,G,F')
 R,G,F = symbols('R,G,F')
 
 #Zahlenwerte
-vals = {Kp: 1, Ki: 0, Kd: 0,Kpt2: 1,T:1,D:0}
+vals = {Kp: 10, Ki: 1, Kd: 0 ,Kpt2: 1,T:1,D:1}
+display(Markdown("Die Werte:"))
+display(vals)
 
-
-#m = 1
-#kc = 10
-##kd = 1
-
-#Kp =1 
-#Ki = 0
-#Kd = 0
-
-
+#Übertragungsfunktionen des PID Reglers
 R_eqrhs = TransferFunction(Kp, 1, s)  + TransferFunction(Ki, s, s) + TransferFunction(Kd * s, 1, s)
 display(Markdown('Die Übertragungsfunktion des Reglers:'))
 display(Eq(R,R_eqrhs))
 display(Markdown("Die Übertragungsfunktion des Reglers mit Werten:"))
-display(Eq(R,R_eqrhs.subs(vals)))
+R_eqrhs_vals = R_eqrhs.subs(vals).simplify()
+display(Eq(R,R_eqrhs_vals))
+#Sprungantwort des Reglers
+step_response_plot(R_eqrhs_vals) 
+```
 
+
+```{python}
+
+
+#Übertragungsfunktion der Strecke
 display(Markdown("Die Übertragungsfunktion der Strecke:"))
 G_eqrhs = TransferFunction(Kpt2, T**2*s**2+2*D*T*s+1, s)
 #G_eqrhs = TransferFunction(1, m*s**2 + kd*s + kc, s)
 display(Eq(G,G_eqrhs))
 display(Markdown("Die Übertragungsfunktion der Strecke mit Werten:"))
-display(Eq(G,G_eqrhs.subs(vals)))
-F_eqrhs = (R_eqrhs*G_eqrhs/(TransferFunction(1,1,s)+R_eqrhs*G_eqrhs)).doit()
+G_eqrhs_vals = G_eqrhs.subs(vals).simplify()
+display(Eq(G,G_eqrhs_vals))
+#Sprungantwort der Strecke
+step_response_plot(G_eqrhs_vals) 
 
+
+#Übertragungsfunktion des geschlossenen Regelkreises
 display(Markdown("Die Übertragungsfunktion des geschlossenen Regelkreises:"))
+F_eqrhs = (R_eqrhs*G_eqrhs/(TransferFunction(1,1,s)+R_eqrhs*G_eqrhs)).doit()
 display(Eq(F,F_eqrhs))
 display(Markdown("Die Übertragungsfunktion des geschlossenen Regelkreises mit Werten:"))
-display(Eq(F,F_eqrhs.subs(vals)))
-G1 = G_eqrhs.subs(vals)
+F_eqrhs_vals = F_eqrhs.subs(vals).simplify()
+display(Eq(F,F_eqrhs_vals))
+#Sprungantwort des geschlossenen Regelkreises
+step_response_plot(F_eqrhs_vals)
+ 
 ```
 
 ## Mathematische Operationen
 Siehe [Haager, Regelungstechnik – kompetenzorientiert](https://www.hpt.at/verlagsprogramm/schulbuecher/regelungstechnik-kompetenzorientiert)
 
-
 ## Grafische Darstellung
 [Bodediagramm](https://docs.sympy.org/latest/modules/physics/control/control_plots.html#bode-plot)
-[Step response](https://docs.sympy.org/latest/modules/physics/control/control_plots.html#step-response-plot)
+
 
 ```{python}
-vals['D']=0.1
-vals['Kpt2'] = 1
-vals['T'] = 1
+
 from sympy.physics.control.control_plots import bode_plot
-bode_plot(G_eqrhs.subs(vals), initial_exp=-4, final_exp=7)
-
-from sympy.physics.control.control_plots import step_response_plot
-step_response_plot(G_eqrhs.subs(vals),upper_limit=vals['T']*20)  
-
-from sympy.physics.control.control_plots import pole_zero_plot
-pole_zero_plot(G_eqrhs.subs(vals))   
+bode_plot(F_eqrhs_vals, initial_exp=-4, final_exp=7)
 ```
+
+
+### Sprungantwort
+[Step response](https://docs.sympy.org/latest/modules/physics/control/control_plots.html#step-response-plot)
+Zeigt den Ausgang wenn am Eingang ein Dirac-Impuls angelegt wird. Vergleichbar mit dem Schlag des Klöppels auf die Glocke.
+
+```{python}	
+from sympy.physics.control.control_plots import step_response_plot
+step_response_plot(F_eqrhs_vals,upper_limit=vals[T]*20)  
+```
+
 
 ### Impulsantwortantwort
 [Impuls response](https://docs.sympy.org/latest/modules/physics/control/control_plots.html#impulse-response-plot)  
@@ -85,15 +99,14 @@ Zeigt den Ausgang wenn am Eingang ein Dirac-Impuls angelegt wird. Vergleichbar m
 
 ```{python}
 from sympy.physics.control.control_plots import impulse_response_plot
-impulse_response_plot(G1)
+impulse_response_plot(F_eqrhs_vals)
 ```
 
-### Sprungantwort
+### Pol- Nullstellen
+[Pole-Zero Plot](https://docs.sympy.org/latest/modules/physics/control/control_plots.html#pole-zero-plot)
+Zeigt den Ausgang wenn am Eingang ein Dirac-Impuls angelegt wird. Vergleichbar mit dem Schlag des Klöppels auf die Glocke.
 
-[Step response](https://docs.sympy.org/latest/modules/physics/control/control_plots.html#step-response-plot)
-
-
-```{python}
-from sympy.physics.control.control_plots import step_response_plot, step_response_numerical_data
-step_response_plot(G1)   
+```{python}	
+from sympy.physics.control.control_plots import pole_zero_plot
+pole_zero_plot(F_eqrhs_vals)   
 ```

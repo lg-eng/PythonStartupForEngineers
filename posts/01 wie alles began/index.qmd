@@ -1,5 +1,5 @@
 ---
-title: "Wie alles gegann"
+title: "Wie alles begann"
 author: "Leopold Götsch"
 date: "2024-03-01"
 categories: [news]

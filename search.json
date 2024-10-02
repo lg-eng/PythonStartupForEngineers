@@ -4,7 +4,7 @@
     "href": "posts/07_QuartoLive/index.html",
     "title": "Dynamically execute code in the user’s web browser",
     "section": "",
-    "text": "Quarto Live\nDynamically execute code in the user’s web browser by comining Quarto and Quarto Live.\n\n\nPython\nHere is some code to demonstrate the use of Python using Quarto Live. in addition the demonstration code can be used to create nice plots with matplotlib. Feel free to change the code and see the results.\nthe code bellow is specific to the data exportet froman Altium transient simulation. The code reads the data from a csv file and plots the current and voltage over time.\nThis method could be a good way to create consistent plots for reports or presentations. As of now it is unclear how data could be uploaded, see Quarto Live - Loading Resources."
+    "text": "Quarto Live\nDynamically execute code in the user’s web browser by combining Quarto and Quarto Live.\nHere is some code to demonstrate the use of Python using Quarto Live. In addition, the demonstration code can be used to create nice plots with Matplotlib. Feel free to change the code and see the results.\nThe code bellow is specific to the data exported from an Altium transient simulation. The code reads the data from a csv file and plots specified data over time.\nThis method could be a good way to create consistent plots for reports or presentations. As of now it is unclear how data could be uploaded, see Quarto Live - Loading Resources."
   },
   {
     "objectID": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html",

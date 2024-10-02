@@ -18,11 +18,11 @@ categories: [news]
 ---
 
 # [Quarto Live](https://r-wasm.github.io/quarto-live/)
-Dynamically execute code in the user's web browser by comining [Quarto](www.quarto.org) and [Quarto Live](https://r-wasm.github.io/quarto-live/).  
+Dynamically execute code in the user's web browser by combining [Quarto](https://www.quarto.org) and [Quarto Live](https://r-wasm.github.io/quarto-live/).  
 
-Here is some code to demonstrate the use of Python using Quarto Live. In addition the demonstration code can be used to create nice plots with matplotlib. Feel free to change the code and see the results.  
-The code bellow is specific to the data exportet from an Altium transient simulation. The code reads the data from a csv file and plots specified data over time.  
-This method could be a good way to create consistent plots for reports or presentations. As of now it is unclear how data could be uploaded, see [Quarto Live - Loading  Resources](https://r-wasm.github.io/quarto-live/other/resources.html ).
+Here is some code to demonstrate the use of Python using Quarto Live. In addition, the demonstration code can be used to create nice plots with [Matplotlib](https://matplotlib.org/). Feel free to change the code and see the results.  
+The code bellow is specific to the data exported from an Altium transient simulation. The code reads the data from a csv file and plots specified data over time.  
+This approach could be a great way to generate consistent plots for reports or presentations. However, it is currently unclear how data can be uploaded, see [Quarto Live - Loading  Resources](https://r-wasm.github.io/quarto-live/other/resources.html ).
 
 
 
@@ -35,48 +35,67 @@ import pandas as pd # import the pandas module
 from itertools import cycle
 
 
-def trans_plot_matplotlib(filepath, thing_to_plot): # define a function that takes a filepath and a dictionary of things to plot      
-  #https://matplotlib.org/stable/gallery/ticks/tick-formatters.html 
-  from matplotlib.ticker import FuncFormatter # import the FuncFormatter class from the matplotlib.ticker module
-  time_formatter = FuncFormatter(lambda v, p: str(Quantity(v, 's'))) # create a time formatter
-  volt_formatter = FuncFormatter(lambda v, p: str(Quantity(v, 'V'))) # create a voltage formatter
-  amp_formatter =  FuncFormatter(lambda v, p: str(Quantity(v, 'A'))) # create a current formatter
+def trans_plot_matplotlib(df, thing_to_plot): # define a function that takes a filepath and a dictionary of things to plot      
+        #https://matplotlib.org/stable/gallery/ticks/tick-formatters.html 
+        from matplotlib.ticker import FuncFormatter # import the FuncFormatter class from the matplotlib.ticker module
+        time_formatter = FuncFormatter(lambda v, p: str(Quantity(v, 's'))) # create a time formatter
+        volt_formatter = FuncFormatter(lambda v, p: str(Quantity(v, 'V'))) # create a voltage formatter
+        amp_formatter =  FuncFormatter(lambda v, p: str(Quantity(v, 'A'))) # create a current formatter
+        pow_formatter =  FuncFormatter(lambda v, p: str(Quantity(v, 'W'))) # create a current formatter
+        percent_formatter =  FuncFormatter(lambda v, p: str(Quantity(v, '%'))) # create a current formatter
 
-  df = pd.read_csv(filepath,sep=';',decimal=',') # read the csv file at the filepath into a pandas dataframe
+        suplotnumber_max = 0 # initialize the maximum subplot number
+        for key in thing_to_plot: # iterate over the keys in the dictionary
+            if max(thing_to_plot[key]) > suplotnumber_max: # check if the maximum value in the list of values is greater than the maximum subplot number
+                suplotnumber_max = max(thing_to_plot[key]) # set the maximum subplot number to the maximum value in the list of values
+        
+        styles = cycle(['--', '-.', ':']) # create a cycle of line styles
+        letters = cycle(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']) # create a cycle of letters
+        fig, ax = plt.subplots(suplotnumber_max,1,figsize=(10, 2*suplotnumber_max)) # create a figure and an array of axes
+        plot_numbers = [] # initialize the list of old subplot numbers, required to add the grid and legend only once per subplot
+        for i, key in enumerate(thing_to_plot): # iterate over the keys in the dictionary
+            sub_plot_number = thing_to_plot[key][0]-1 # set the subplot number to the first value in the list of values
+            line, = ax[sub_plot_number].plot(df.time, df[key],label=key) # plot the key against the time
+            ax[sub_plot_number].set_xlabel('Time') # set the x-axis label
+            
 
-  suplotnumber_max = 0 # initialize the maximum subplot number
-  for key in thing_to_plot: # iterate over the keys in the dictionary
-      if max(thing_to_plot[key]) > suplotnumber_max: # check if the maximum value in the list of values is greater than the maximum subplot number
-          suplotnumber_max = max(thing_to_plot[key]) # set the maximum subplot number to the maximum value in the list of values
-  
-  styles = cycle(['--', '-.', ':']) # create a cycle of line styles
-  fig, ax = plt.subplots(suplotnumber_max,1,figsize=(5, 3*suplotnumber_max)) # create a figure and an array of axes
-  plot_numbers = [] # initialize the list of old subplot numbers, required to add the grid and legend only once per subplot
-  for i, key in enumerate(thing_to_plot): # iterate over the keys in the dictionary
-      sub_plot_number = thing_to_plot[key][0]-1 # set the subplot number to the first value in the list of values
-      line, = ax[sub_plot_number].plot(df.time, df[key],label=key) # plot the key against the time
-      ax[sub_plot_number].set_xlabel('Time') # set the x-axis label
-      ax[sub_plot_number].set_ylabel(key) # set the y-axis label
+            if sub_plot_number not in plot_numbers: # check if the subplot number is different from the old subplot number
+              ax[sub_plot_number].grid() # add a grid to the subplot
+              ax[sub_plot_number].xaxis.set_major_formatter(time_formatter) # set the x-axis formatter to the time formatter
+              if key[0] == 'i': # check if the first character of the key is 'i'
+                  ax[sub_plot_number].yaxis.set_major_formatter(amp_formatter) # set the y-axis formatter to the current formatter
+                  ax[sub_plot_number].set_ylabel('Current') # set the y-axis label
+              elif key[0] == 'v': # check if the first character of the key is 'v'
+                ax[sub_plot_number].yaxis.set_major_formatter(volt_formatter) # set the y-axis formatter to the voltage formatter
+                ax[sub_plot_number].set_ylabel('Voltage') # set the y-axis label
+              elif key[0] == 'p': # check if the first character of the key is 'p'
+                ax[sub_plot_number].yaxis.set_major_formatter(pow_formatter)
+                ax[sub_plot_number].set_ylabel('Power') # set the y-axis label
+              elif key[0] == 'r': # check if the first character of the key is 'r'
+                ax[sub_plot_number].yaxis.set_major_formatter(percent_formatter)
+                ax[sub_plot_number].set_ylabel('Percentage')
+              ax[sub_plot_number].yaxis_tickformat = ".3s" # set the y-axis tick format
+              ax[sub_plot_number].xaxis_tickformat = ".3s" # set the x-axis tick format
+              plot_numbers.append(sub_plot_number) # append the subplot number to the list of old subplot numbers
+              ax[sub_plot_number].set_title('Plot ' + next(letters) + '.') # set the title of the subplot to the next letter
+            else:
+                line.set_linestyle(next(styles))
+            ax[sub_plot_number].legend() # add a legend to the subplot
+            
 
-      if sub_plot_number not in plot_numbers: # check if the subplot number is different from the old subplot number
-        ax[sub_plot_number].grid() # add a grid to the subplot
-        ax[sub_plot_number].xaxis.set_major_formatter(time_formatter) # set the x-axis formatter to the time formatter
-        if key[0] == 'i': # check if the first character of the key is 'i'
-            ax[sub_plot_number].yaxis.set_major_formatter(amp_formatter) # set the y-axis formatter to the current formatter
-        elif key[0] == 'v': # check if the first character of the key is 'v'
-          ax[sub_plot_number].yaxis.set_major_formatter(volt_formatter) # set the y-axis formatter to the voltage formatter
-        ax[sub_plot_number].yaxis_tickformat = ".3s" # set the y-axis tick format
-        ax[sub_plot_number].xaxis_tickformat = ".3s" # set the x-axis tick format
-        plot_numbers.append(sub_plot_number) # append the subplot number to the list of old subplot numbers
-      else:
-        line.set_linestyle(next(styles))
-      ax[sub_plot_number].legend() # add a legend to the subplot
+        plt.tight_layout() # adjust the subplot layout
+        plt.savefig(filepath.replace('.csv','.svg'))  # save the figure as an svg file
+        plt.savefig(filepath.replace('.csv','.png'))  # save the figure as an svg file
+        plt.show() # show the figure
 
-  plt.tight_layout() # adjust the subplot layout
-  plt.savefig(filepath.replace('.csv','.svg'))  # save the figure as an svg file
-  plt.show() # show the figure
+thing_to_plot = {"i(rlast)":[1],"i(rshunt1)":[2],"v(uin)":[3],"v(uout)":[3],'v(uin)-v(uout)': [4],'rudiff_perc':[5],'p(rlast)':[6],'p(vin)':[7]} # define a dictionary of things to plot
+filepath = 'data/1.1_Transient Analysis.csv' # define the filepath
 
-thing_to_plot = {"i(rlast)":[1],"i(rshunt)":[2],"ic(t1)":[3],"ic(t2)":[3],"v(uin)":[4],"v(uout)":[4]} # define a dictionary of things to plot
-trans_plot_matplotlib("data/trans.csv", thing_to_plot ) # call the function
+df = pd.read_csv(filepath,sep=';',decimal=',') # read the csv file at the filepath into a pandas dataframe
+df['v(uin)-v(uout)'] = df['v(uin)'] - df['v(uout)'] # create a new column in the dataframe that is the difference between the voltage at the input and the voltage at the output
+df['vdiff_perc'] = ((df['v(uin)'] - df['v(uout)'])/df['v(uin)'])*100 # create a new column in the dataframe that is the percentage difference between the voltage at the input and the voltage at the output
+df['rudiff_perc'] = df['vdiff_perc'].clip(lower=0,upper=100) # clip the percentage difference between -100 and 100
+
+trans_plot_matplotlib(df, thing_to_plot ) # call the function
 ```
 

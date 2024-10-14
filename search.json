@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "posts/08_Strecke/index.html",
+    "href": "posts/08_Strecke/index.html",
+    "title": "Transfer Function Simulation",
+    "section": "",
+    "text": "This code will plot the step response of a transfer function. The transfer function is defined as a sympy transfer function and then converted to a scipy transfer function. The step response is then plotted using matplotlib."
+  },
+  {
     "objectID": "posts/06_Weitere Anwendungen/index.html",
     "href": "posts/06_Weitere Anwendungen/index.html",
     "title": "Weitere Anwendungen von Python",

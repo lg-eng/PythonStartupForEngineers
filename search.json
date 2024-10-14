@@ -1,108 +1,52 @@
 [
   {
-    "objectID": "posts/07_QuartoLive/index.html",
-    "href": "posts/07_QuartoLive/index.html",
-    "title": "Dynamically execute code in the user’s web browser",
+    "objectID": "posts/06_Weitere Anwendungen/index.html",
+    "href": "posts/06_Weitere Anwendungen/index.html",
+    "title": "Weitere Anwendungen von Python",
     "section": "",
-    "text": "Quarto Live\nDynamically execute code in the user’s web browser by combining Quarto and Quarto Live.\nHere is some code to demonstrate the use of Python using Quarto Live. In addition, the demonstration code can be used to create nice plots with Matplotlib. Feel free to change the code and see the results.\nThe code bellow is specific to the data exported from an Altium transient simulation. The code reads the data from a csv file and plots specified data over time.\nThis method could be a good way to create consistent plots for reports or presentations. As of now it is unclear how data could be uploaded, see Quarto Live - Loading Resources."
+    "text": "Einheiten und symbolisches Rechnen\nAnimationen\nNoten ins Soktrates eintragen mit GUI\nInteraktive Webseite für PID-Regler"
   },
   {
-    "objectID": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html",
-    "href": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html",
-    "title": "Streckenidentifikation",
+    "objectID": "posts/06_Weitere Anwendungen/index.html#beispiele",
+    "href": "posts/06_Weitere Anwendungen/index.html#beispiele",
+    "title": "Weitere Anwendungen von Python",
     "section": "",
-    "text": "Regelungstechnik mit Python\nSympy Control"
+    "text": "Einheiten und symbolisches Rechnen\nAnimationen\nNoten ins Soktrates eintragen mit GUI\nInteraktive Webseite für PID-Regler"
   },
   {
-    "objectID": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html#übertragungsfunktionen",
-    "href": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html#übertragungsfunktionen",
-    "title": "Streckenidentifikation",
+    "objectID": "posts/06_Weitere Anwendungen/index.html#toolboxen-und-anwendungen",
+    "href": "posts/06_Weitere Anwendungen/index.html#toolboxen-und-anwendungen",
+    "title": "Weitere Anwendungen von Python",
+    "section": "Toolboxen und Anwendungen",
+    "text": "Toolboxen und Anwendungen\n\nMikrocontroller programmierung\nSymbolisches Rechnen\nNumerische Toolbox\nSciPy\nMatplotlib\nPandas\nSeaborn\nSelenium\nBilderkennung\nControl Systems Library\nMachine Learning\nConda Environment\n\nPhyphox\nInteractive Webseite für PID-Regler"
+  },
+  {
+    "objectID": "posts/04_PT2Glied/index.html",
+    "href": "posts/04_PT2Glied/index.html",
+    "title": "PT2 Simulation",
+    "section": "",
+    "text": "Streckensimulation mit Demonstration der Interaktiven Möglichkeiten von Jupyter Notebooks.\nPT2 Simulation\nhttps://docs.sympy.org/latest/modules/physics/control/control.html"
+  },
+  {
+    "objectID": "posts/04_PT2Glied/index.html#übertragungsfunktionen",
+    "href": "posts/04_PT2Glied/index.html#übertragungsfunktionen",
+    "title": "PT2 Simulation",
     "section": "Übertragungsfunktionen",
-    "text": "Übertragungsfunktionen\n\nfrom sympy import *\nfrom sympy.abc import s\nfrom sympy.physics.control.lti import TransferFunction\nfrom sympy.physics.control.control_plots import step_response_plot, step_response_numerical_data\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport platform\nfrom IPython.display import display, Markdown, Latex \n\n\n#Einstellungen\n#der Messung\ndevice = 'Tek' #Tek for Tektronix 'Dig' fpr Digilent\nfilename = 'TEK00003.CSV' #Name of the fiel containing the measeruement Data '3V.csv'\nSprung_Endwert = 5 # Wie hoch ist der Sprung der gemessen wurde in V\ntime_measured = 0.25 # Wie lange wurde gemessen\nG1sym = Symbol('G1') # Übertragungsfunktion des Systems\n\n# Strecke\nK=0.18\nT=0.0265\n\n# Übertragungsfunktion\nG1 = TransferFunction(K, 1+T*s, s)\ndisplay(Markdown('Die Übertragungsfunktion der Strecke:'))\ndisplay(Eq(G1sym,G1))\n\nDie Übertragungsfunktion der Strecke:\n\n\n\\(\\displaystyle G_{1} = \\frac{0.18}{0.0265 s + 1}\\)"
+    "text": "Übertragungsfunktionen\n\nfrom sympy import *\nfrom sympy.abc import s\nfrom sympy.physics.control.lti import TransferFunction\nfrom IPython.display import display, Markdown, Latex \nfrom sympy.physics.control.control_plots import step_response_plot, step_response_numerical_data\n\nKp,Ki,Kd,Kpt2,T,D,R,G,F = symbols('Kp,Ki,Kd,Kpt2,T,D,R,G,F')\nR,G,F = symbols('R,G,F')\n\n#Zahlenwerte\nvals = {Kp: 10, Ki: 1, Kd: 0 ,Kpt2: 1,T:1,D:1}\ndisplay(Markdown(\"Die Werte:\"))\ndisplay(vals)\n\n#Übertragungsfunktionen des PID Reglers\nR_eqrhs = TransferFunction(Kp, 1, s)  + TransferFunction(Ki, s, s) + TransferFunction(Kd * s, 1, s)\ndisplay(Markdown('Die Übertragungsfunktion des Reglers:'))\ndisplay(Eq(R,R_eqrhs))\ndisplay(Markdown(\"Die Übertragungsfunktion des Reglers mit Werten:\"))\nR_eqrhs_vals = R_eqrhs.subs(vals).simplify()\ndisplay(Eq(R,R_eqrhs_vals))\n#Sprungantwort des Reglers\nstep_response_plot(R_eqrhs_vals) \n\nDie Werte:\n\n\n{Kp: 10, Ki: 1, Kd: 0, Kpt2: 1, T: 1, D: 1}\n\n\nDie Übertragungsfunktion des Reglers:\n\n\n\\(\\displaystyle R = \\frac{Kp}{1} + \\frac{Ki}{s} + \\frac{Kd s}{1}\\)\n\n\nDie Übertragungsfunktion des Reglers mit Werten:\n\n\n\\(\\displaystyle R = \\frac{10 s + 1}{s}\\)\n\n\n\n\n\n\n\n\n\n\n#Übertragungsfunktion der Strecke\ndisplay(Markdown(\"Die Übertragungsfunktion der Strecke:\"))\nG_eqrhs = TransferFunction(Kpt2, T**2*s**2+2*D*T*s+1, s)\n#G_eqrhs = TransferFunction(1, m*s**2 + kd*s + kc, s)\ndisplay(Eq(G,G_eqrhs))\ndisplay(Markdown(\"Die Übertragungsfunktion der Strecke mit Werten:\"))\nG_eqrhs_vals = G_eqrhs.subs(vals).simplify()\ndisplay(Eq(G,G_eqrhs_vals))\n#Sprungantwort der Strecke\nstep_response_plot(G_eqrhs_vals) \n\n\n#Übertragungsfunktion des geschlossenen Regelkreises\ndisplay(Markdown(\"Die Übertragungsfunktion des geschlossenen Regelkreises:\"))\nF_eqrhs = (R_eqrhs*G_eqrhs/(TransferFunction(1,1,s)+R_eqrhs*G_eqrhs)).doit()\ndisplay(Eq(F,F_eqrhs))\ndisplay(Markdown(\"Die Übertragungsfunktion des geschlossenen Regelkreises mit Werten:\"))\nF_eqrhs_vals = F_eqrhs.subs(vals).simplify()\ndisplay(Eq(F,F_eqrhs_vals))\n#Sprungantwort des geschlossenen Regelkreises\nstep_response_plot(F_eqrhs_vals)\n\nDie Übertragungsfunktion der Strecke:\n\n\n\\(\\displaystyle G = \\frac{Kpt_{2}}{2 D T s + T^{2} s^{2} + 1}\\)\n\n\nDie Übertragungsfunktion der Strecke mit Werten:\n\n\n\\(\\displaystyle G = \\frac{1}{s^{2} + 2 s + 1}\\)\n\n\n\n\n\n\n\n\n\nDie Übertragungsfunktion des geschlossenen Regelkreises:\n\n\n\\(\\displaystyle F = \\frac{Kpt_{2} s \\left(Ki + s \\left(Kd s + Kp\\right)\\right) \\left(2 D T s + T^{2} s^{2} + 1\\right)}{s \\left(Kpt_{2} \\left(Ki + s \\left(Kd s + Kp\\right)\\right) + s \\left(2 D T s + T^{2} s^{2} + 1\\right)\\right) \\left(2 D T s + T^{2} s^{2} + 1\\right)}\\)\n\n\nDie Übertragungsfunktion des geschlossenen Regelkreises mit Werten:\n\n\n\\(\\displaystyle F = \\frac{10 s + 1}{s \\left(s^{2} + 2 s + 1\\right) + 10 s + 1}\\)"
   },
   {
-    "objectID": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html#vergleich-mit-den-messdaten",
-    "href": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html#vergleich-mit-den-messdaten",
-    "title": "Streckenidentifikation",
-    "section": "Vergleich mit den Messdaten",
-    "text": "Vergleich mit den Messdaten\n\n# daten des mathematisches Modell plotten\ndataSim = step_response_numerical_data(G1,upper_limit=time_measured)\n\n#Messdaten importieren\nimport pandas as pd\n\nif device == 'Dig':\n    #Von Digilent\n    df = pd.read_csv(filename,header=10) # Hier müssen eventuell einstellungen gemacht werden um Messdaten aus unterscheidlichen Quellen korrekt zu lesen\nelif device == 'Tek':\n    #Von Tektronix\n    if platform.system() == 'Linux':\n        df = pd.read_csv(filename,header=14)\n    else:\n        df = pd.read_csv(filename,encoding='ansi',header=14)\n        \n\n\ndf.columns = ['time', 'channel1', 'channel2'] # Spalten umbenennen für vereinfachte programmierung\n\n#df.channel1 = df.channel1.rolling(window=100).mean() #Gleitender Mittelwert\n\n# Daten plotten\nplt.plot(df.time,df.channel1,label='Messdaten - Eingang')\nplt.plot(df.time,df.channel2,label='Messdaten - Ausgang')\nplt.plot(dataSim[0],[item * Sprung_Endwert for item in dataSim[1]],label='Mathematisches Modell der Strecke - Ausgang')\nplt.plot(dataSim[0],Sprung_Endwert*np.sign(dataSim[0]),label='Mathematisches Modell der Strecke - Eingang')\nplt.legend()\nplt.xlabel('time in s')\nplt.ylabel('Umdrehungen in V - Ausgang')\nplt.grid()\nplt.show()"
+    "objectID": "posts/04_PT2Glied/index.html#mathematische-operationen",
+    "href": "posts/04_PT2Glied/index.html#mathematische-operationen",
+    "title": "PT2 Simulation",
+    "section": "Mathematische Operationen",
+    "text": "Mathematische Operationen\nSiehe Haager, Regelungstechnik – kompetenzorientiert"
   },
   {
-    "objectID": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html#grafische-darstellung-der-strecke",
-    "href": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html#grafische-darstellung-der-strecke",
-    "title": "Streckenidentifikation",
-    "section": "Grafische Darstellung der Strecke",
-    "text": "Grafische Darstellung der Strecke\n\nBodediagramm\n\nfrom sympy.physics.control.control_plots import bode_plot\nbode_plot(G1, initial_exp=-1, final_exp=5)  \n\n\n\n\n\n\n\n\n\n\nImpulsantwortantwort\nImpuls response\nZeigt den Ausgang wenn am Eingang ein Dirac-Impuls angelegt wird. Vergleichbar mit dem Schlag des Klöppels auf die Glocke.\n\nfrom sympy.physics.control.control_plots import impulse_response_plot\nimpulse_response_plot(G1,upper_limit=0.5)\n    \n\n\n\n\n\n\n\n\n\n\nSprungantwort\nStep response\n\nfrom sympy.physics.control.control_plots import step_response_plot, step_response_numerical_data\nstep_response_plot(G1,upper_limit=0.5)   \n\n\n\n\n\n\n\n\n\n\nPol-Nulstellendiagramm\nPole-Zero-Plot\n\nfrom sympy.physics.control.control_plots import pole_zero_plot\npole_zero_plot(G1)"
-  },
-  {
-    "objectID": "posts/03_Signals/index.html",
-    "href": "posts/03_Signals/index.html",
-    "title": "Signale",
-    "section": "",
-    "text": "Klassische Signalverarbeitung"
-  },
-  {
-    "objectID": "posts/03_Signals/index.html#pakate-laden",
-    "href": "posts/03_Signals/index.html#pakate-laden",
-    "title": "Signale",
-    "section": "Pakate laden",
-    "text": "Pakate laden\n\nimport pandas as pd"
-  },
-  {
-    "objectID": "posts/03_Signals/index.html#messdaten-laden",
-    "href": "posts/03_Signals/index.html#messdaten-laden",
-    "title": "Signale",
-    "section": "Messdaten laden",
-    "text": "Messdaten laden\n\ndf = pd.read_excel('data.xlsx')\ndisplay(df)\ndf = pd.read_csv('data.csv',delimiter=';', decimal=',')\ndisplay(df)\n\n\n\n\n\n\n\n\n\nTime (s)\nLinear Acceleration x (m/s^2)\nLinear Acceleration y (m/s^2)\nLinear Acceleration z (m/s^2)\nAbsolute acceleration (m/s^2)\n\n\n\n\n0\n0.003954\n-0.420842\n-0.198814\n-0.960295\n1.067147\n\n\n1\n0.014038\n-0.470621\n-0.133003\n-0.954231\n1.072255\n\n\n2\n0.024122\n-0.449677\n0.118119\n-1.253714\n1.337146\n\n\n3\n0.034206\n-0.343770\n0.210004\n-1.558292\n1.609519\n\n\n4\n0.044290\n-0.084875\n0.117329\n-1.651638\n1.657974\n\n\n...\n...\n...\n...\n...\n...\n\n\n1764\n17.792211\n-0.576435\n-1.804821\n0.306687\n1.919301\n\n\n1765\n17.802295\n-0.351995\n-1.561643\n1.524333\n2.210480\n\n\n1766\n17.812379\n-0.088204\n-1.405769\n0.822967\n1.631331\n\n\n1767\n17.822463\n0.030091\n-1.223451\n0.418178\n1.293295\n\n\n1768\n17.832547\n-0.522023\n-0.990275\n0.034845\n1.119985\n\n\n\n\n1769 rows × 5 columns\n\n\n\n\n\n\n\n\n\n\n\n\nTime (s)\nLinear Acceleration x (m/s^2)\nLinear Acceleration y (m/s^2)\nLinear Acceleration z (m/s^2)\nAbsolute acceleration (m/s^2)\n\n\n\n\n0\n0.003954\n-0.420842\n-0.198814\n-0.960295\n1.067147\n\n\n1\n0.014038\n-0.470621\n-0.133003\n-0.954231\n1.072255\n\n\n2\n0.024122\n-0.449677\n0.118119\n-1.253714\n1.337146\n\n\n3\n0.034206\n-0.343770\n0.210004\n-1.558292\n1.609519\n\n\n4\n0.044290\n-0.084875\n0.117329\n-1.651638\n1.657974\n\n\n...\n...\n...\n...\n...\n...\n\n\n1764\n17.792211\n-0.576435\n-1.804821\n0.306687\n1.919301\n\n\n1765\n17.802295\n-0.351995\n-1.561643\n1.524333\n2.210480\n\n\n1766\n17.812379\n-0.088204\n-1.405769\n0.822967\n1.631331\n\n\n1767\n17.822463\n0.030091\n-1.223451\n0.418178\n1.293295\n\n\n1768\n17.832547\n-0.522023\n-0.990275\n0.034845\n1.119985\n\n\n\n\n1769 rows × 5 columns"
-  },
-  {
-    "objectID": "posts/03_Signals/index.html#messdaten-überprüfen",
-    "href": "posts/03_Signals/index.html#messdaten-überprüfen",
-    "title": "Signale",
-    "section": "Messdaten überprüfen",
-    "text": "Messdaten überprüfen\n\nZeitstempel\nwird auf die konstante Abtastrate überprüft.\n\nall(df['Time (s)'].diff().diff()==0)\n\nFalse\n\n\nDie maximale Abweichung der Abtastrate wird angegeben\n\nmaximal_sampling_rate_deviation = df['Time (s)'].diff().diff().abs().max()\ndisplay(maximal_sampling_rate_deviation)\n\n2.000000000279556e-06\n\n\nRelativer Fehler der Abtastrate\n\nsampling_rate_mean = df['Time (s)'].diff().mean()\nsampling_rate_relative_deviation = maximal_sampling_rate_deviation/sampling_rate_mean\ndisplay(sampling_rate_relative_deviation)\n\n0.0001983330850696467\n\n\nAbweichung kleiner 0.02 %. Das ist ausreichend für unsere Zwecke und die Annahme einer konstanten Abtastrate darf als erfüllt angenommen werden."
-  },
-  {
-    "objectID": "posts/03_Signals/index.html#was-sollen-wir-von-den-messdaten-wissen",
-    "href": "posts/03_Signals/index.html#was-sollen-wir-von-den-messdaten-wissen",
-    "title": "Signale",
-    "section": "Was sollen wir von den Messdaten wissen?",
-    "text": "Was sollen wir von den Messdaten wissen?\nIst Herr Haberl “Volle gsprintet?!”\nLösungsideen: 1. Aus der Beschleunigung die Geschwindigkeit bestimmen. 2. Schrittfrequenz bestimmen\n\nDarstellung der Messdaten\n\ndf.plot(x='Time (s)')\n\n\n\n\n\n\n\n\n\nfrom numpy.fft import fft, ifft\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n#Für welche messdaten soll die FFT gemacht werden?\nvalues = df['Absolute acceleration (m/s^2)'].values\n\nX = fft(values) #FFT der Werte\nN = len(X) #Anzahl der Messpunkte\nn = np.arange(N) #Array mit der Länge gleich der Anzahl der Messpunkte\n\naz = df['Time (s)'].diff().mean() # Abtastzeit\ndisplay('Abtastzeit = ' + str(az) + ' s')\nsr = 1/(az) #Samplingrate = Abtastfrequenz\ndisplay('Sampling Rate = ' + str(sr) + ' Hz')\n\nT = N/sr # Absolute Zeit\nfreq = n/T # Frequenzachse\n\n#Plot \nplt.figure(figsize = (6, 3))\nplt.subplot(121)\n\nplt.stem(freq, np.abs(X), 'b', \\\n         markerfmt=\" \", basefmt=\"-b\")\nplt.xlabel('Freq  in Hz')\nplt.ylabel('FFT Amplitude |X(freq)|')\n#plt.xlim(0, sr/2) \nplt.xlim(0,10)\nplt.ylim(0,1000)\nplt.grid()\n\nplt.subplot(122)\nplt.plot(df['Time (s)'].values, ifft(X), 'r')\nplt.xlabel('Time in s')\nplt.ylabel('Amplitude')\nplt.tight_layout()\nplt.show()\n\n'Abtastzeit = 0.01008404623755656 s'\n\n\n'Sampling Rate = 99.16654252096204 Hz'\n\n\nC:\\Users\\leo\\anaconda3\\envs\\quarto\\Lib\\site-packages\\matplotlib\\cbook.py:1699: ComplexWarning:\n\nCasting complex values to real discards the imaginary part\n\nC:\\Users\\leo\\anaconda3\\envs\\quarto\\Lib\\site-packages\\matplotlib\\cbook.py:1345: ComplexWarning:\n\nCasting complex values to real discards the imaginary part\n\n\n\n\n\n\n\n\n\n\n\nimport plotly.express as px\nfig = px.line(df, x=\"Time (s)\", y='Absolute acceleration (m/s^2)', title='commute')\nfig.show()\n\n                                                \n\n\n\n# x and y given as array_like objects\nimport plotly.express as px\nfig = px.line(x=freq, y=np.abs(X))\nfig.update_yaxes(range=[0, max(np.abs(X)[1:])], row=1, col=1)\nfig.update_xaxes(range=[0, 50], row=1, col=1)\nfig.update_xaxes(title_text=\"Frequency (Hz)\", row=1, col=1)\nfig.update_yaxes(title_text=\"FFT Amplitude |X(freq)|\", row=1, col=1)\n\nfig.show()"
-  },
-  {
-    "objectID": "posts/01 wie alles began/index.html",
-    "href": "posts/01 wie alles began/index.html",
-    "title": "Wie alles begann",
-    "section": "",
-    "text": "5 Jahre Matlab\n2 Jahre Octave\n1 Jahr Scilab / Scicos\n9 Jahre Python\nDie einzige Motivation Matlab zu verlassen war das fehlen von Lizenzen.\nAus Zwang kann ein Glücksfall entstehen!\nDer Umstieg von Matlab auf Python dauert 30 Minuten. Die Möglichkeiten die sich mit Python eröffnen werden in diesem Blog vorgestellt.\nEs wird gezeigt welche Aufgaben mit Python 1:1 übernommen werden können und welche Aufgaben mit Python anders gelöst werden. Es soll natürlich auch gezeigt werden was mit Python schwer möglich ist.\nDer Antrieb dieses Blogs ist es zu zeigen welche Möglichkeiten sich mit Python ergeben. Der Blog entstand im Zuge einer Matlab Schulung und wurde mit Python / Quarto erstellt."
-  },
-  {
-    "objectID": "posts/01 wie alles began/index.html#warum-python-im-unterricht",
-    "href": "posts/01 wie alles began/index.html#warum-python-im-unterricht",
-    "title": "Wie alles begann",
-    "section": "Warum Python im Unterricht",
-    "text": "Warum Python im Unterricht\nVerbreitung der Programmiersprachen\nGithub Programming Metrics\nDass Python unterrichtet wird ist aufgrund seiner Verbreitung und der vielfältigen Anwendungsmöglichkeiten sinnvoll. Die einfache Syntax macht den Einstieg einfach.\nAufgrund der vielfältigen Anwendungsmöglichkeiten ist Python für viele Anwendungen einsetzbar und könnte als Schweizer Taschenmesser der Programmiersprachen bezeichnet werden.\nJede weitere Programmiersprache im Unterricht muss wohl überlegt sein, da nicht nur das erlernen, sondern auch die installation der Entwicklungsumgebung Zeit in Anspruch nimmt."
-  },
-  {
-    "objectID": "posts/01 wie alles began/index.html#hilfe",
-    "href": "posts/01 wie alles began/index.html#hilfe",
-    "title": "Wie alles begann",
-    "section": "Hilfe",
-    "text": "Hilfe\nPython Bodenseo ChatGPT w3school\nThe internet ist full of it!"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "This blog was started as a way to document the transition from proprietorial engineering software to python. I hope to share my experiences and help others who are in the same position."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Python Startup For Engineers",
-    "section": "",
-    "text": "Wie alles begann\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n01.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nDer Wechsel auf Python\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n01.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nSignale\n\n\n\n\n\n\nnews\n\n\ninteraktiv\n\n\n\n\n\n\n\n\n\n01.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nStreckenidentifikation\n\n\n\n\n\n\ninteraktiv\n\n\nsimulation\n\n\ncontrol\n\n\n\n\n\n\n\n\n\n02.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nPT2 Simulation\n\n\n\n\n\n\ninteraktiv\n\n\nsimulation\n\n\nPT2\n\n\n\n\n\n\n\n\n\n04.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nWeitere Anwendungen von Python\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n04.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nDynamically execute code in the user’s web browser\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n02.10.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\nKeine Treffer"
+    "objectID": "posts/04_PT2Glied/index.html#grafische-darstellung",
+    "href": "posts/04_PT2Glied/index.html#grafische-darstellung",
+    "title": "PT2 Simulation",
+    "section": "Grafische Darstellung",
+    "text": "Grafische Darstellung\nBodediagramm\n\nfrom sympy.physics.control.control_plots import bode_plot\nbode_plot(F_eqrhs_vals, initial_exp=-4, final_exp=7)\n\n\n\n\n\n\n\n\n\nSprungantwort\nStep response Zeigt den Ausgang wenn am Eingang ein Dirac-Impuls angelegt wird. Vergleichbar mit dem Schlag des Klöppels auf die Glocke.\n\nfrom sympy.physics.control.control_plots import step_response_plot\nstep_response_plot(F_eqrhs_vals,upper_limit=vals[T]*20)  \n\n\n\n\n\n\n\n\n\n\nImpulsantwortantwort\nImpuls response\nZeigt den Ausgang wenn am Eingang ein Dirac-Impuls angelegt wird. Vergleichbar mit dem Schlag des Klöppels auf die Glocke.\n\nfrom sympy.physics.control.control_plots import impulse_response_plot\nimpulse_response_plot(F_eqrhs_vals)\n\n\n\n\n\n\n\n\n\n\nPol- Nullstellen\nPole-Zero Plot Zeigt den Ausgang wenn am Eingang ein Dirac-Impuls angelegt wird. Vergleichbar mit dem Schlag des Klöppels auf die Glocke.\n\nfrom sympy.physics.control.control_plots import pole_zero_plot\npole_zero_plot(F_eqrhs_vals)"
   },
   {
     "objectID": "posts/02_Der Wechsel/index.html",
@@ -140,52 +84,108 @@
     "text": "Next Level - Dokumentation mit Quarto\nQuarto.org ist ein neues Open-Source-Tool, das speziell für die Erstellung von Büchern, Berichten und anderen Dokumenten entwickelt wurde. Es ist besonders für die Erstellung von wissenschaftlichen Dokumenten geeignet, da es die Integration von Code, Gleichungen und Visualisierungen ermöglicht. Quarto ist auch in der Lage, Dokumente in verschiedene Formate zu exportieren, darunter PDF, HTML und EPUB."
   },
   {
-    "objectID": "posts/04_PT2Glied/index.html",
-    "href": "posts/04_PT2Glied/index.html",
-    "title": "PT2 Simulation",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Python Startup For Engineers",
     "section": "",
-    "text": "Streckensimulation mit Demonstration der Interaktiven Möglichkeiten von Jupyter Notebooks.\nPT2 Simulation\nhttps://docs.sympy.org/latest/modules/physics/control/control.html"
+    "text": "Wie alles begann\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n01.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nDer Wechsel auf Python\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n01.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nSignale\n\n\n\n\n\n\nnews\n\n\ninteraktiv\n\n\n\n\n\n\n\n\n\n01.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nStreckenidentifikation\n\n\n\n\n\n\ninteraktiv\n\n\nsimulation\n\n\ncontrol\n\n\n\n\n\n\n\n\n\n02.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nPT2 Simulation\n\n\n\n\n\n\ninteraktiv\n\n\nsimulation\n\n\nPT2\n\n\n\n\n\n\n\n\n\n04.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nWeitere Anwendungen von Python\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n04.03.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nDynamically execute code in the user’s web browser\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n02.10.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\n\n\n\n\n\n\nTransfer Function Simulation\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n14.10.2024\n\n\nLeopold Götsch\n\n\n\n\n\n\nKeine Treffer"
   },
   {
-    "objectID": "posts/04_PT2Glied/index.html#übertragungsfunktionen",
-    "href": "posts/04_PT2Glied/index.html#übertragungsfunktionen",
-    "title": "PT2 Simulation",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This blog was started as a way to document the transition from proprietorial engineering software to python. I hope to share my experiences and help others who are in the same position."
+  },
+  {
+    "objectID": "posts/01 wie alles began/index.html",
+    "href": "posts/01 wie alles began/index.html",
+    "title": "Wie alles begann",
+    "section": "",
+    "text": "5 Jahre Matlab\n2 Jahre Octave\n1 Jahr Scilab / Scicos\n9 Jahre Python\nDie einzige Motivation Matlab zu verlassen war das fehlen von Lizenzen.\nAus Zwang kann ein Glücksfall entstehen!\nDer Umstieg von Matlab auf Python dauert 30 Minuten. Die Möglichkeiten die sich mit Python eröffnen werden in diesem Blog vorgestellt.\nEs wird gezeigt welche Aufgaben mit Python 1:1 übernommen werden können und welche Aufgaben mit Python anders gelöst werden. Es soll natürlich auch gezeigt werden was mit Python schwer möglich ist.\nDer Antrieb dieses Blogs ist es zu zeigen welche Möglichkeiten sich mit Python ergeben. Der Blog entstand im Zuge einer Matlab Schulung und wurde mit Python / Quarto erstellt."
+  },
+  {
+    "objectID": "posts/01 wie alles began/index.html#warum-python-im-unterricht",
+    "href": "posts/01 wie alles began/index.html#warum-python-im-unterricht",
+    "title": "Wie alles begann",
+    "section": "Warum Python im Unterricht",
+    "text": "Warum Python im Unterricht\nVerbreitung der Programmiersprachen\nGithub Programming Metrics\nDass Python unterrichtet wird ist aufgrund seiner Verbreitung und der vielfältigen Anwendungsmöglichkeiten sinnvoll. Die einfache Syntax macht den Einstieg einfach.\nAufgrund der vielfältigen Anwendungsmöglichkeiten ist Python für viele Anwendungen einsetzbar und könnte als Schweizer Taschenmesser der Programmiersprachen bezeichnet werden.\nJede weitere Programmiersprache im Unterricht muss wohl überlegt sein, da nicht nur das erlernen, sondern auch die installation der Entwicklungsumgebung Zeit in Anspruch nimmt."
+  },
+  {
+    "objectID": "posts/01 wie alles began/index.html#hilfe",
+    "href": "posts/01 wie alles began/index.html#hilfe",
+    "title": "Wie alles begann",
+    "section": "Hilfe",
+    "text": "Hilfe\nPython Bodenseo ChatGPT w3school\nThe internet ist full of it!"
+  },
+  {
+    "objectID": "posts/03_Signals/index.html",
+    "href": "posts/03_Signals/index.html",
+    "title": "Signale",
+    "section": "",
+    "text": "Klassische Signalverarbeitung"
+  },
+  {
+    "objectID": "posts/03_Signals/index.html#pakate-laden",
+    "href": "posts/03_Signals/index.html#pakate-laden",
+    "title": "Signale",
+    "section": "Pakate laden",
+    "text": "Pakate laden\n\nimport pandas as pd"
+  },
+  {
+    "objectID": "posts/03_Signals/index.html#messdaten-laden",
+    "href": "posts/03_Signals/index.html#messdaten-laden",
+    "title": "Signale",
+    "section": "Messdaten laden",
+    "text": "Messdaten laden\n\ndf = pd.read_excel('data.xlsx')\ndisplay(df)\ndf = pd.read_csv('data.csv',delimiter=';', decimal=',')\ndisplay(df)\n\n\n\n\n\n\n\n\n\nTime (s)\nLinear Acceleration x (m/s^2)\nLinear Acceleration y (m/s^2)\nLinear Acceleration z (m/s^2)\nAbsolute acceleration (m/s^2)\n\n\n\n\n0\n0.003954\n-0.420842\n-0.198814\n-0.960295\n1.067147\n\n\n1\n0.014038\n-0.470621\n-0.133003\n-0.954231\n1.072255\n\n\n2\n0.024122\n-0.449677\n0.118119\n-1.253714\n1.337146\n\n\n3\n0.034206\n-0.343770\n0.210004\n-1.558292\n1.609519\n\n\n4\n0.044290\n-0.084875\n0.117329\n-1.651638\n1.657974\n\n\n...\n...\n...\n...\n...\n...\n\n\n1764\n17.792211\n-0.576435\n-1.804821\n0.306687\n1.919301\n\n\n1765\n17.802295\n-0.351995\n-1.561643\n1.524333\n2.210480\n\n\n1766\n17.812379\n-0.088204\n-1.405769\n0.822967\n1.631331\n\n\n1767\n17.822463\n0.030091\n-1.223451\n0.418178\n1.293295\n\n\n1768\n17.832547\n-0.522023\n-0.990275\n0.034845\n1.119985\n\n\n\n\n1769 rows × 5 columns\n\n\n\n\n\n\n\n\n\n\n\n\nTime (s)\nLinear Acceleration x (m/s^2)\nLinear Acceleration y (m/s^2)\nLinear Acceleration z (m/s^2)\nAbsolute acceleration (m/s^2)\n\n\n\n\n0\n0.003954\n-0.420842\n-0.198814\n-0.960295\n1.067147\n\n\n1\n0.014038\n-0.470621\n-0.133003\n-0.954231\n1.072255\n\n\n2\n0.024122\n-0.449677\n0.118119\n-1.253714\n1.337146\n\n\n3\n0.034206\n-0.343770\n0.210004\n-1.558292\n1.609519\n\n\n4\n0.044290\n-0.084875\n0.117329\n-1.651638\n1.657974\n\n\n...\n...\n...\n...\n...\n...\n\n\n1764\n17.792211\n-0.576435\n-1.804821\n0.306687\n1.919301\n\n\n1765\n17.802295\n-0.351995\n-1.561643\n1.524333\n2.210480\n\n\n1766\n17.812379\n-0.088204\n-1.405769\n0.822967\n1.631331\n\n\n1767\n17.822463\n0.030091\n-1.223451\n0.418178\n1.293295\n\n\n1768\n17.832547\n-0.522023\n-0.990275\n0.034845\n1.119985\n\n\n\n\n1769 rows × 5 columns"
+  },
+  {
+    "objectID": "posts/03_Signals/index.html#messdaten-überprüfen",
+    "href": "posts/03_Signals/index.html#messdaten-überprüfen",
+    "title": "Signale",
+    "section": "Messdaten überprüfen",
+    "text": "Messdaten überprüfen\n\nZeitstempel\nwird auf die konstante Abtastrate überprüft.\n\nall(df['Time (s)'].diff().diff()==0)\n\nFalse\n\n\nDie maximale Abweichung der Abtastrate wird angegeben\n\nmaximal_sampling_rate_deviation = df['Time (s)'].diff().diff().abs().max()\ndisplay(maximal_sampling_rate_deviation)\n\n2.000000000279556e-06\n\n\nRelativer Fehler der Abtastrate\n\nsampling_rate_mean = df['Time (s)'].diff().mean()\nsampling_rate_relative_deviation = maximal_sampling_rate_deviation/sampling_rate_mean\ndisplay(sampling_rate_relative_deviation)\n\n0.0001983330850696467\n\n\nAbweichung kleiner 0.02 %. Das ist ausreichend für unsere Zwecke und die Annahme einer konstanten Abtastrate darf als erfüllt angenommen werden."
+  },
+  {
+    "objectID": "posts/03_Signals/index.html#was-sollen-wir-von-den-messdaten-wissen",
+    "href": "posts/03_Signals/index.html#was-sollen-wir-von-den-messdaten-wissen",
+    "title": "Signale",
+    "section": "Was sollen wir von den Messdaten wissen?",
+    "text": "Was sollen wir von den Messdaten wissen?\nIst Herr Haberl “Volle gsprintet?!”\nLösungsideen: 1. Aus der Beschleunigung die Geschwindigkeit bestimmen. 2. Schrittfrequenz bestimmen\n\nDarstellung der Messdaten\n\ndf.plot(x='Time (s)')\n\n\n\n\n\n\n\n\n\nfrom numpy.fft import fft, ifft\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n#Für welche messdaten soll die FFT gemacht werden?\nvalues = df['Absolute acceleration (m/s^2)'].values\n\nX = fft(values) #FFT der Werte\nN = len(X) #Anzahl der Messpunkte\nn = np.arange(N) #Array mit der Länge gleich der Anzahl der Messpunkte\n\naz = df['Time (s)'].diff().mean() # Abtastzeit\ndisplay('Abtastzeit = ' + str(az) + ' s')\nsr = 1/(az) #Samplingrate = Abtastfrequenz\ndisplay('Sampling Rate = ' + str(sr) + ' Hz')\n\nT = N/sr # Absolute Zeit\nfreq = n/T # Frequenzachse\n\n#Plot \nplt.figure(figsize = (6, 3))\nplt.subplot(121)\n\nplt.stem(freq, np.abs(X), 'b', \\\n         markerfmt=\" \", basefmt=\"-b\")\nplt.xlabel('Freq  in Hz')\nplt.ylabel('FFT Amplitude |X(freq)|')\n#plt.xlim(0, sr/2) \nplt.xlim(0,10)\nplt.ylim(0,1000)\nplt.grid()\n\nplt.subplot(122)\nplt.plot(df['Time (s)'].values, ifft(X), 'r')\nplt.xlabel('Time in s')\nplt.ylabel('Amplitude')\nplt.tight_layout()\nplt.show()\n\n'Abtastzeit = 0.01008404623755656 s'\n\n\n'Sampling Rate = 99.16654252096204 Hz'\n\n\nC:\\Users\\leo\\anaconda3\\envs\\quarto\\Lib\\site-packages\\matplotlib\\cbook.py:1699: ComplexWarning:\n\nCasting complex values to real discards the imaginary part\n\nC:\\Users\\leo\\anaconda3\\envs\\quarto\\Lib\\site-packages\\matplotlib\\cbook.py:1345: ComplexWarning:\n\nCasting complex values to real discards the imaginary part\n\n\n\n\n\n\n\n\n\n\n\nimport plotly.express as px\nfig = px.line(df, x=\"Time (s)\", y='Absolute acceleration (m/s^2)', title='commute')\nfig.show()\n\n                                                \n\n\n\n# x and y given as array_like objects\nimport plotly.express as px\nfig = px.line(x=freq, y=np.abs(X))\nfig.update_yaxes(range=[0, max(np.abs(X)[1:])], row=1, col=1)\nfig.update_xaxes(range=[0, 50], row=1, col=1)\nfig.update_xaxes(title_text=\"Frequency (Hz)\", row=1, col=1)\nfig.update_yaxes(title_text=\"FFT Amplitude |X(freq)|\", row=1, col=1)\n\nfig.show()"
+  },
+  {
+    "objectID": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html",
+    "href": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html",
+    "title": "Streckenidentifikation",
+    "section": "",
+    "text": "Regelungstechnik mit Python\nSympy Control"
+  },
+  {
+    "objectID": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html#übertragungsfunktionen",
+    "href": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html#übertragungsfunktionen",
+    "title": "Streckenidentifikation",
     "section": "Übertragungsfunktionen",
-    "text": "Übertragungsfunktionen\n\nfrom sympy import *\nfrom sympy.abc import s\nfrom sympy.physics.control.lti import TransferFunction\nfrom IPython.display import display, Markdown, Latex \nfrom sympy.physics.control.control_plots import step_response_plot, step_response_numerical_data\n\nKp,Ki,Kd,Kpt2,T,D,R,G,F = symbols('Kp,Ki,Kd,Kpt2,T,D,R,G,F')\nR,G,F = symbols('R,G,F')\n\n#Zahlenwerte\nvals = {Kp: 10, Ki: 1, Kd: 0 ,Kpt2: 1,T:1,D:1}\ndisplay(Markdown(\"Die Werte:\"))\ndisplay(vals)\n\n#Übertragungsfunktionen des PID Reglers\nR_eqrhs = TransferFunction(Kp, 1, s)  + TransferFunction(Ki, s, s) + TransferFunction(Kd * s, 1, s)\ndisplay(Markdown('Die Übertragungsfunktion des Reglers:'))\ndisplay(Eq(R,R_eqrhs))\ndisplay(Markdown(\"Die Übertragungsfunktion des Reglers mit Werten:\"))\nR_eqrhs_vals = R_eqrhs.subs(vals).simplify()\ndisplay(Eq(R,R_eqrhs_vals))\n#Sprungantwort des Reglers\nstep_response_plot(R_eqrhs_vals) \n\nDie Werte:\n\n\n{Kp: 10, Ki: 1, Kd: 0, Kpt2: 1, T: 1, D: 1}\n\n\nDie Übertragungsfunktion des Reglers:\n\n\n\\(\\displaystyle R = \\frac{Kp}{1} + \\frac{Ki}{s} + \\frac{Kd s}{1}\\)\n\n\nDie Übertragungsfunktion des Reglers mit Werten:\n\n\n\\(\\displaystyle R = \\frac{10 s + 1}{s}\\)\n\n\n\n\n\n\n\n\n\n\n#Übertragungsfunktion der Strecke\ndisplay(Markdown(\"Die Übertragungsfunktion der Strecke:\"))\nG_eqrhs = TransferFunction(Kpt2, T**2*s**2+2*D*T*s+1, s)\n#G_eqrhs = TransferFunction(1, m*s**2 + kd*s + kc, s)\ndisplay(Eq(G,G_eqrhs))\ndisplay(Markdown(\"Die Übertragungsfunktion der Strecke mit Werten:\"))\nG_eqrhs_vals = G_eqrhs.subs(vals).simplify()\ndisplay(Eq(G,G_eqrhs_vals))\n#Sprungantwort der Strecke\nstep_response_plot(G_eqrhs_vals) \n\n\n#Übertragungsfunktion des geschlossenen Regelkreises\ndisplay(Markdown(\"Die Übertragungsfunktion des geschlossenen Regelkreises:\"))\nF_eqrhs = (R_eqrhs*G_eqrhs/(TransferFunction(1,1,s)+R_eqrhs*G_eqrhs)).doit()\ndisplay(Eq(F,F_eqrhs))\ndisplay(Markdown(\"Die Übertragungsfunktion des geschlossenen Regelkreises mit Werten:\"))\nF_eqrhs_vals = F_eqrhs.subs(vals).simplify()\ndisplay(Eq(F,F_eqrhs_vals))\n#Sprungantwort des geschlossenen Regelkreises\nstep_response_plot(F_eqrhs_vals)\n\nDie Übertragungsfunktion der Strecke:\n\n\n\\(\\displaystyle G = \\frac{Kpt_{2}}{2 D T s + T^{2} s^{2} + 1}\\)\n\n\nDie Übertragungsfunktion der Strecke mit Werten:\n\n\n\\(\\displaystyle G = \\frac{1}{s^{2} + 2 s + 1}\\)\n\n\n\n\n\n\n\n\n\nDie Übertragungsfunktion des geschlossenen Regelkreises:\n\n\n\\(\\displaystyle F = \\frac{Kpt_{2} s \\left(Ki + s \\left(Kd s + Kp\\right)\\right) \\left(2 D T s + T^{2} s^{2} + 1\\right)}{s \\left(Kpt_{2} \\left(Ki + s \\left(Kd s + Kp\\right)\\right) + s \\left(2 D T s + T^{2} s^{2} + 1\\right)\\right) \\left(2 D T s + T^{2} s^{2} + 1\\right)}\\)\n\n\nDie Übertragungsfunktion des geschlossenen Regelkreises mit Werten:\n\n\n\\(\\displaystyle F = \\frac{10 s + 1}{s \\left(s^{2} + 2 s + 1\\right) + 10 s + 1}\\)"
+    "text": "Übertragungsfunktionen\n\nfrom sympy import *\nfrom sympy.abc import s\nfrom sympy.physics.control.lti import TransferFunction\nfrom sympy.physics.control.control_plots import step_response_plot, step_response_numerical_data\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport platform\nfrom IPython.display import display, Markdown, Latex \n\n\n#Einstellungen\n#der Messung\ndevice = 'Tek' #Tek for Tektronix 'Dig' fpr Digilent\nfilename = 'TEK00003.CSV' #Name of the fiel containing the measeruement Data '3V.csv'\nSprung_Endwert = 5 # Wie hoch ist der Sprung der gemessen wurde in V\ntime_measured = 0.25 # Wie lange wurde gemessen\nG1sym = Symbol('G1') # Übertragungsfunktion des Systems\n\n# Strecke\nK=0.18\nT=0.0265\n\n# Übertragungsfunktion\nG1 = TransferFunction(K, 1+T*s, s)\ndisplay(Markdown('Die Übertragungsfunktion der Strecke:'))\ndisplay(Eq(G1sym,G1))\n\nDie Übertragungsfunktion der Strecke:\n\n\n\\(\\displaystyle G_{1} = \\frac{0.18}{0.0265 s + 1}\\)"
   },
   {
-    "objectID": "posts/04_PT2Glied/index.html#mathematische-operationen",
-    "href": "posts/04_PT2Glied/index.html#mathematische-operationen",
-    "title": "PT2 Simulation",
-    "section": "Mathematische Operationen",
-    "text": "Mathematische Operationen\nSiehe Haager, Regelungstechnik – kompetenzorientiert"
+    "objectID": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html#vergleich-mit-den-messdaten",
+    "href": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html#vergleich-mit-den-messdaten",
+    "title": "Streckenidentifikation",
+    "section": "Vergleich mit den Messdaten",
+    "text": "Vergleich mit den Messdaten\n\n# daten des mathematisches Modell plotten\ndataSim = step_response_numerical_data(G1,upper_limit=time_measured)\n\n#Messdaten importieren\nimport pandas as pd\n\nif device == 'Dig':\n    #Von Digilent\n    df = pd.read_csv(filename,header=10) # Hier müssen eventuell einstellungen gemacht werden um Messdaten aus unterscheidlichen Quellen korrekt zu lesen\nelif device == 'Tek':\n    #Von Tektronix\n    if platform.system() == 'Linux':\n        df = pd.read_csv(filename,header=14)\n    else:\n        df = pd.read_csv(filename,encoding='ansi',header=14)\n        \n\n\ndf.columns = ['time', 'channel1', 'channel2'] # Spalten umbenennen für vereinfachte programmierung\n\n#df.channel1 = df.channel1.rolling(window=100).mean() #Gleitender Mittelwert\n\n# Daten plotten\nplt.plot(df.time,df.channel1,label='Messdaten - Eingang')\nplt.plot(df.time,df.channel2,label='Messdaten - Ausgang')\nplt.plot(dataSim[0],[item * Sprung_Endwert for item in dataSim[1]],label='Mathematisches Modell der Strecke - Ausgang')\nplt.plot(dataSim[0],Sprung_Endwert*np.sign(dataSim[0]),label='Mathematisches Modell der Strecke - Eingang')\nplt.legend()\nplt.xlabel('time in s')\nplt.ylabel('Umdrehungen in V - Ausgang')\nplt.grid()\nplt.show()"
   },
   {
-    "objectID": "posts/04_PT2Glied/index.html#grafische-darstellung",
-    "href": "posts/04_PT2Glied/index.html#grafische-darstellung",
-    "title": "PT2 Simulation",
-    "section": "Grafische Darstellung",
-    "text": "Grafische Darstellung\nBodediagramm\n\nfrom sympy.physics.control.control_plots import bode_plot\nbode_plot(F_eqrhs_vals, initial_exp=-4, final_exp=7)\n\n\n\n\n\n\n\n\n\nSprungantwort\nStep response Zeigt den Ausgang wenn am Eingang ein Dirac-Impuls angelegt wird. Vergleichbar mit dem Schlag des Klöppels auf die Glocke.\n\nfrom sympy.physics.control.control_plots import step_response_plot\nstep_response_plot(F_eqrhs_vals,upper_limit=vals[T]*20)  \n\n\n\n\n\n\n\n\n\n\nImpulsantwortantwort\nImpuls response\nZeigt den Ausgang wenn am Eingang ein Dirac-Impuls angelegt wird. Vergleichbar mit dem Schlag des Klöppels auf die Glocke.\n\nfrom sympy.physics.control.control_plots import impulse_response_plot\nimpulse_response_plot(F_eqrhs_vals)\n\n\n\n\n\n\n\n\n\n\nPol- Nullstellen\nPole-Zero Plot Zeigt den Ausgang wenn am Eingang ein Dirac-Impuls angelegt wird. Vergleichbar mit dem Schlag des Klöppels auf die Glocke.\n\nfrom sympy.physics.control.control_plots import pole_zero_plot\npole_zero_plot(F_eqrhs_vals)"
+    "objectID": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html#grafische-darstellung-der-strecke",
+    "href": "posts/05_Streckenidentifikation/MessdatenVergleichStrecke.html#grafische-darstellung-der-strecke",
+    "title": "Streckenidentifikation",
+    "section": "Grafische Darstellung der Strecke",
+    "text": "Grafische Darstellung der Strecke\n\nBodediagramm\n\nfrom sympy.physics.control.control_plots import bode_plot\nbode_plot(G1, initial_exp=-1, final_exp=5)  \n\n\n\n\n\n\n\n\n\n\nImpulsantwortantwort\nImpuls response\nZeigt den Ausgang wenn am Eingang ein Dirac-Impuls angelegt wird. Vergleichbar mit dem Schlag des Klöppels auf die Glocke.\n\nfrom sympy.physics.control.control_plots import impulse_response_plot\nimpulse_response_plot(G1,upper_limit=0.5)\n    \n\n\n\n\n\n\n\n\n\n\nSprungantwort\nStep response\n\nfrom sympy.physics.control.control_plots import step_response_plot, step_response_numerical_data\nstep_response_plot(G1,upper_limit=0.5)   \n\n\n\n\n\n\n\n\n\n\nPol-Nulstellendiagramm\nPole-Zero-Plot\n\nfrom sympy.physics.control.control_plots import pole_zero_plot\npole_zero_plot(G1)"
   },
   {
-    "objectID": "posts/06_Weitere Anwendungen/index.html",
-    "href": "posts/06_Weitere Anwendungen/index.html",
-    "title": "Weitere Anwendungen von Python",
+    "objectID": "posts/07_QuartoLive/index.html",
+    "href": "posts/07_QuartoLive/index.html",
+    "title": "Dynamically execute code in the user’s web browser",
     "section": "",
-    "text": "Einheiten und symbolisches Rechnen\nAnimationen\nNoten ins Soktrates eintragen mit GUI\nInteraktive Webseite für PID-Regler"
-  },
-  {
-    "objectID": "posts/06_Weitere Anwendungen/index.html#beispiele",
-    "href": "posts/06_Weitere Anwendungen/index.html#beispiele",
-    "title": "Weitere Anwendungen von Python",
-    "section": "",
-    "text": "Einheiten und symbolisches Rechnen\nAnimationen\nNoten ins Soktrates eintragen mit GUI\nInteraktive Webseite für PID-Regler"
-  },
-  {
-    "objectID": "posts/06_Weitere Anwendungen/index.html#toolboxen-und-anwendungen",
-    "href": "posts/06_Weitere Anwendungen/index.html#toolboxen-und-anwendungen",
-    "title": "Weitere Anwendungen von Python",
-    "section": "Toolboxen und Anwendungen",
-    "text": "Toolboxen und Anwendungen\n\nMikrocontroller programmierung\nSymbolisches Rechnen\nNumerische Toolbox\nSciPy\nMatplotlib\nPandas\nSeaborn\nSelenium\nBilderkennung\nControl Systems Library\nMachine Learning\nConda Environment\n\nPhyphox\nInteractive Webseite für PID-Regler"
+    "text": "Quarto Live\nDynamically execute code in the user’s web browser by combining Quarto and Quarto Live.\nHere is some code to demonstrate the use of Python using Quarto Live. In addition, the demonstration code can be used to create nice plots with Matplotlib. Feel free to change the code and see the results.\nThe code bellow is specific to the data exported from an Altium transient simulation. The code reads the data from a csv file and plots specified data over time.\nThis approach could be a great way to generate consistent plots for reports or presentations. However, it is currently unclear how data can be uploaded, see Quarto Live - Loading Resources.\n\n\n\n\n\n\n\n\nÜbertragungsfunktionstester\nDer Übertragungsfunktionstester ist ein interaktives Werkzeug, mit dem Sie die Übertragungsfunktion eines Systems testen können. Sie können auch die Sprungantwort des Systems visualisieren, indem Sie die Sprungantwort auswählen."
   }
 ]
